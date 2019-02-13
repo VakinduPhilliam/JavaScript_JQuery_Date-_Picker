@@ -1,0 +1,43 @@
+
+<html>
+	<head>
+		<title>Date Difference</title>
+
+<link href="jquery-ui.css" rel="stylesheet">
+<script src="external/jquery/jquery.js"></script>
+<script src="jquery-ui.js"></script>
+
+	</head>
+	<body>
+<table width="300px" border="1" style="border-collapse:collapse;background-color:#E8DCFF">
+	<tr><td>
+<input type="text" id="date1">
+<input type="text" id="date2">
+<input type="text" id="calculated">
+
+	</tr></td>
+</table>
+
+
+<script>
+
+$(function() { // Shorthand for $(document).ready(function() {
+      $('#date1').datepicker({onSelect: calcDiff,
+            minDate: new Date(2012, 7 - 1, 8), maxDate: new Date(2012, 7 - 1, 28)});
+      $('#date2').datepicker({onSelect: calcDiff,
+            minDate: new Date(2012, 7 - 1, 9), maxDate: new Date(2012, 7 - 1, 28)});
+
+    function calcDiff() {
+            var d1 = $('#date1').datepicker('getDate');
+            var d2 = $('#date2').datepicker('getDate');
+            var diff = 0;
+            if (d1 && d2) {
+                  diff = Math.floor(((d2.getTime() - d1.getTime()) / 86400000)+1); // ms per day
+            }
+            $('#calculated').val(diff);
+      }
+});
+
+</script>
+</body>
+</html>
